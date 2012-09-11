@@ -1,0 +1,40 @@
+// Flatten nested arrays to a flat one-level array
+// Use as
+//   a: flatten(1..5, 7..10, 14..15, 17..18)
+//   a: flatten(1..5 7..10 14..15 17..18)
+
+flatten()
+  result = ()
+
+  compute()
+    for arg in arguments
+      if length(arg) > 1
+        compute(arg)
+      else
+        push(result, arg)
+
+  compute(arguments)
+  return result
+
+
+// Transparentify a color
+// Inspiration: https://github.com/LearnBoost/stylus/issues/313
+// Use as
+//   color: rgb2rgba(#CC6699)
+
+rgb2rgba(color)
+  r = red(color)
+  g = green(color)
+  b = blue(color)
+  min = min(r,min(g,b))
+
+  a = (255 - min) / 255
+
+  r = max(0, (r - min) / a)
+  g = max(0, (g - min) / a)
+  b = max(0, (b - min) / a)
+
+  return rgba(r,g,b,a)
+
+// Alias
+transparentify = rgb2rgba
