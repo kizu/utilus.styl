@@ -1,3 +1,17 @@
+// Simple shortcut to check if the argument is an array
+is_array()
+  return length(arguments) > 1
+
+
+// Returns first defined variable or entity, false otherwise
+//   predefined arguments are needed so the function would
+//   return an array if it's the only argument
+or($arg1, $arg2 = false, args...)
+  for $arg in arguments
+    return $arg if $arg != false and (typeof($arg) != 'ident' or is_array($arg) or $arg == 0)
+  return false
+
+
 // Flatten nested arrays to a flat one-level array
 // Use as
 //   a: flatten(1..5, 7..10, 14..15, 17..18)
