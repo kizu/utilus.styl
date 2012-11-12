@@ -42,7 +42,7 @@ rgb2rgba(color)
   b = blue(color)
   min = min(r,min(g,b))
 
-  a = (255 - min) / 255
+  a = round(100 * (255 - min) / 255) / 100
 
   r = max(0, (r - min) / a)
   g = max(0, (g - min) / a)
