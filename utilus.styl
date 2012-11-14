@@ -3,6 +3,11 @@ is_array()
   return length(arguments) > 1
 
 
+// Simple shortcut to check if the argument is a hash
+is_hash()
+  return (arguments[0][1] or arguments[0][1] == "0") ? true : false
+
+
 // Returns first defined variable or entity, false otherwise
 //   predefined arguments are needed so the function would
 //   return an array if it's the only argument
@@ -30,11 +35,12 @@ flatten()
   compute(arguments)
   return result
 
+
 // Hash getter with possible fallback.
 // Returns `false` if nothing found, or no `fallback` given
 get($hash, $key = false, $fallback = false)
   if is_array($hash) and $key
-    return $pair[1..length($pair)] if $pair[0] == $key for $pair in $hash if $hash[0][1] or $hash[0][1] == "0"
+    return $pair[1..length($pair)] if $pair[0] == $key for $pair in $hash if is_hash($hash)
     return $hash[1..length($hash)] if $hash[0] == $key
 
   return $fallback
