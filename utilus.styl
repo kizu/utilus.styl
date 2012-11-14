@@ -90,8 +90,8 @@ hex(n)
 
   h = floor(n / 16) % 16
   l = n % 16
-  digit(h) + digit(l)
+  return digit(h) + digit(l)
 
 fullcolor(x)
-  unquote("#" + hex(red(x)) + hex(green(x)) + hex(blue(x)))
+  return unquote("#" + hex(red(x)) + hex(green(x)) + hex(blue(x)))
 
