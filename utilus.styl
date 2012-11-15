@@ -8,6 +8,20 @@ is_hash()
   return (arguments[0][1] or arguments[0][1] == "0") ? true : false
 
 
+// Added functions to round things with the given precise
+floor_precise($number, $precision = 0)
+  $multiplier = 10 ** $precision
+  return floor($number * $multiplier) / $multiplier
+
+ceil_precise($number, $precision = 0)
+  $multiplier = 10 ** $precision
+  return ceil($number * $multiplier) / $multiplier
+
+round_precise($number, $precision = 0)
+  $multiplier = 10 ** $precision
+  return round($number * $multiplier) / $multiplier
+
+
 // Returns first defined variable or entity, false otherwise
 //   predefined arguments are needed so the function would
 //   return an array if it's the only argument
@@ -70,28 +84,14 @@ rgb2rgba(color, underlay = #FFF)
 
   a = min(a1,min(a2,a3))
 
-  r = r2 + (r1 - r2) / (floor(a * 100) / 100)
-  g = g2 + (g1 - g2) / (floor(a * 100) / 100)
-  b = b2 + (b1 - b2) / (floor(a * 100) / 100)
+  r = r2 + (r1 - r2) / floor_precise(a, 2)
+  g = g2 + (g1 - g2) / floor_precise(a, 2)
+  b = b2 + (b1 - b2) / floor_precise(a, 2)
 
-  a = round(a * 100) / 100
+  a = round_precise(a, 2)
 
   return rgba(r,g,b,a)
 
 // Alias
 transparentify = rgb2rgba
-
-
-// Full color getter, returns full hex representation
-// Inspiration: https://github.com/LearnBoost/stylus/issues/581
-hex(n)
-  digit(v)
-    return ( ""+v "A" "B" "C" "D" "E" "F" )[ max(0, v - 9) ]
-
-  h = floor(n / 16) % 16
-  l = n % 16
-  return digit(h) + digit(l)
-
-fullcolor(x)
-  return unquote("#" + hex(red(x)) + hex(green(x)) + hex(blue(x)))
 
