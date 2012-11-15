@@ -63,6 +63,11 @@ get($hash, $key = false, $fallback = false)
   // What if hash contains multiple items with the same key?
 
 
+
+
+/* Color functions
+========================================*/
+
 // Transparentify a color
 // Inspiration: https://github.com/LearnBoost/stylus/issues/313
 // Use as
@@ -95,3 +100,25 @@ rgb2rgba(color, underlay = #FFF)
 // Alias
 transparentify = rgb2rgba
 
+
+// Getting luminance of a color,
+//   got from https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js#L55
+luminance($color)
+  f($c)
+    $c = $c / 255
+    return ($c < 0.03928) ? ($c / 12.92) : (($c + 0.055) / 1.055) ** 2.4;
+  return 0.2126 * f(red($color)) + 0.7152 * f(green($color)) + 0.0722 * f(blue($color));
+
+
+// Basic color blending
+blend($top,$bottom)
+  // Only normal blending here for now
+  return $top if alpha($top) == 1
+  return $bottom if alpha($top) == 0
+
+  newR = (1 - alpha($top)) *   red($bottom) + alpha($top) *   red($top)
+  newG = (1 - alpha($top)) * green($bottom) + alpha($top) * green($top)
+  newB = (1 - alpha($top)) *  blue($bottom) + alpha($top) *  blue($top)
+  newA = 1 // FIXME: should be smth different if the alpha of $bottom != 1
+
+  return rgba(newR,newG,newB,newA)
