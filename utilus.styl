@@ -111,7 +111,7 @@ luminance($color)
 
 
 // Basic color blending
-blend($top,$bottom)
+blend($top,$bottom = #FFF)
   // Only normal blending here for now
   return $top if alpha($top) == 1
   return $bottom if alpha($top) == 0
@@ -122,3 +122,29 @@ blend($top,$bottom)
   newA = 1 // FIXME: should be smth different if the alpha of $bottom != 1
 
   return rgba(newR,newG,newB,newA)
+
+
+// Determining contrast ratio,
+//   based on https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js#L108
+//       .. 3   == bad for any text
+//   3   .. 4.5 == bad for small text
+//   4.5 .. 7   == perfect for big text
+//   7   ..     == perfect for any size
+contrast($top,$bottom = #FFF)
+  if alpha($bottom) >= 1
+    $l1 = luminance($bottom) + .05
+    $l2 = luminance( alpha($top) < 1 ? blend($top,$bottom) : $top ) + .05
+    $ratio = $l1 / $l2
+    if $l2 > $l1
+      $ratio = 1 / $ratio
+    return round_precise($ratio,1)
+  else
+    // FIXME: some minor difference there with http://leaverou.github.com/contrast-ratio/
+    $closest = \
+      rgb(min(max(0, (red($top)   - red($bottom)   * alpha($bottom)) / (1 - alpha($bottom))),255), \
+          min(max(0, (green($top) - green($bottom) * alpha($bottom)) / (1 - alpha($bottom))),255), \
+          min(max(0, (blue($top)  - blue($bottom)  * alpha($bottom)) / (1 - alpha($bottom))),255))
+    $max = max(contrast($top,blend($bottom,#FFF)),contrast($top,blend($bottom,#000)))
+    $min = contrast($top,$closest)
+    return (round_precise(($min + $max) / 2, 2) $min $max)
+
