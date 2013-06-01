@@ -131,6 +131,15 @@ get_color($where, $fallback = false, $index = 0)
 alike($where, $fallback, $index = 0)
   get_n($where, $fallback, $index, type($fallback))
 
+
+// Remove the first item, return the original array.
+remove_first($where)
+  $result = unquote('')
+  for $item, $index in $where
+    push($result, $item) if $index > 0
+  return $result
+
+
 /* Color functions
 ========================================*/
 
