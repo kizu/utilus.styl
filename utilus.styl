@@ -104,8 +104,8 @@ get($hash, $key = false, $fallback = false)
 
 
 // Getter of an argument at the given index
-// Should it be merged with either simple `get` or `or`?
-get_n($where, $index = 0, $type = 'any')
+//   Should it be merged with either simple `get` or `or`?
+get_n($where, $fallback = false, $index = 0, $type = 'any')
   $i = 0
   for $arg in $where
     if $type == 'any' or $type == type($arg)
@@ -113,20 +113,23 @@ get_n($where, $index = 0, $type = 'any')
         return $arg
       else
         $i = $i + 1
-  return false
+  return $fallback
 
-get_string($where, $index = 0)
-  get_n($where, $index, 'string')
+get_string($where, $fallback = false, $index = 0)
+  get_n($where, $fallback, $index, 'string')
 
-get_ident($where, $index = 0)
-  get_n($where, $index, 'ident')
+get_ident($where, $fallback = false, $index = 0)
+  get_n($where, $fallback, $index, 'ident')
 
-get_unit($where, $index = 0)
-  get_n($where, $index, 'unit')
+get_unit($where, $fallback = false, $index = 0)
+  get_n($where, $fallback, $index, 'unit')
 
-get_color($where, $index = 0)
-  get_n($where, $index, 'rgba')
+get_color($where, $fallback = false, $index = 0)
+  get_n($where, $fallback, $index, 'rgba')
 
+// Get the item from arguments with the same type of the given fallback
+alike($where, $fallback, $index = 0)
+  get_n($where, $fallback, $index, type($fallback))
 
 /* Color functions
 ========================================*/
