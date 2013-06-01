@@ -103,6 +103,29 @@ get($hash, $key = false, $fallback = false)
   // What if hash contains multiple items with the same key?
 
 
+// Getter of an argument at the given index
+// Should it be merged with either simple `get` or `or`?
+get_n($where, $index = 0, $type = 'any')
+  $i = 0
+  for $arg in $where
+    if $type == 'any' or $type == type($arg)
+      if $i == $index
+        return $arg
+      else
+        $i = $i + 1
+  return false
+
+get_string($where, $index = 0)
+  get_n($where, $index, 'string')
+
+get_ident($where, $index = 0)
+  get_n($where, $index, 'ident')
+
+get_unit($where, $index = 0)
+  get_n($where, $index, 'unit')
+
+get_color($where, $index = 0)
+  get_n($where, $index, 'rgba')
 
 
 /* Color functions
