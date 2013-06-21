@@ -150,6 +150,22 @@ count($where, $what = 'unit')
       $count = $count + 1
   return $count
 
+// retrieve the sides array, like in paddings, margins, borders etc.
+get_sides($where, $fallback = 0)
+  // Could be refactored to have only one for running
+  $top = alike($where, $fallback)
+  $right = alike($where, $top, 1)
+  $bottom = alike($where, $top, 2)
+  $left = alike($where, $right, 3)
+
+  // Could use `auto` from arguments instead of using `trbl` keywords
+  $top = auto if bottom in $where
+  $right = auto if left in $where
+  $bottom = auto if top in $where
+  $left = auto if right in $where
+
+  return $top $right $bottom $left
+
 
 // Remove the first item, return the original array.
 remove_first($where)
