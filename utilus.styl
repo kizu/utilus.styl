@@ -131,6 +131,17 @@ get_color($where, $fallback = false, $index = 0)
 alike($where, $fallback, $index = 0)
   get_n($where, $fallback, $index, type($fallback))
 
+// Retrieve one of the given items with optional fallback
+retrieve($where, $what, $fallback = false)
+  if is_array($what)
+    for $what_item in $what
+      if $what_item in $where
+        return $what_item
+  else
+    if $what in $where
+      return $what
+  return $fallback
+
 
 // Remove the first item, return the original array.
 remove_first($where)
