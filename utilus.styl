@@ -48,6 +48,16 @@ is_hash()
   return (arguments[0][1] or arguments[0][1] == "0") ? true : false
 
 
+// Simple shortcut to check if the arguments are separated by comma
+is_comma_list()
+  for $item, $index in arguments
+    if $index == 0
+      $test = $item
+    else
+      $test = $test, $item
+  return s('%s',arguments) == s('%s',$test)
+
+
 // Added functions to round things with the given precise
 floor_precise($number, $precision = 0)
   $multiplier = 10 ** $precision
@@ -170,8 +180,15 @@ get_sides($where, $fallback = 0)
 // Remove the first item, return the original array.
 remove_first($where)
   $result = unquote('')
-  for $item, $index in $where
-    push($result, $item) if $index > 0
+  if is_comma_list($where)
+    for $item, $index in $where
+      if $index == 1
+        $result = $item
+      else if $index > 1
+        $result = $result, $item
+  else
+    for $item, $index in $where
+      push($result, $item) if $index > 0
   return $result
 
 
