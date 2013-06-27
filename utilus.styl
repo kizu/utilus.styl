@@ -237,6 +237,28 @@ luminance($color)
   return 0.2126 * f(red($color)) + 0.7152 * f(green($color)) + 0.0722 * f(blue($color));
 
 
+// Get just the average color from the given colors.
+average_color()
+  $l = length(arguments)
+  $r = 0
+  $g = 0
+  $b = 0
+  $a = 0
+
+  for $color in arguments
+    $r = $r + red($color)
+    $g = $g + green($color)
+    $b = $b + blue($color)
+    $a = $a + alpha($color)
+
+  $r = $r / $l
+  $g = $g / $l
+  $b = $b / $l
+  $a = $a / $l
+
+  return rgba($r,$g,$b,$a)
+
+
 // Basic color blending
 blend($top,$bottom = #FFF)
   // Only normal blending here for now
