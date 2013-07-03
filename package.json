@@ -1,0 +1,16 @@
+{
+  "name": "utilus.styl",
+  "description": "Just some helpers for Stylus",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kizu/utilus.styl.git"
+  },
+  "devDependencies": {
+      "stylus": "0.x"
+    , "mocha": "*"
+    , "should": "*"
+  },
+  "author": "Roman Komarov <kizu@kizu.ru>",
+  "engines": { "node": "*" }
+}
