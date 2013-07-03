@@ -6,10 +6,12 @@
     "type": "git",
     "url": "git://github.com/kizu/utilus.styl.git"
   },
+  "dependencies": {
+    "stylus": "0.33.x"
+  },
   "devDependencies": {
-      "stylus": "0.x"
-    , "mocha": "*"
-    , "should": "*"
+    "mocha": "*",
+    "should": "*"
   },
   "author": "Roman Komarov <kizu@kizu.ru>",
   "engines": { "node": "*" }
