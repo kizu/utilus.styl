@@ -1,6 +1,9 @@
 .had-none {
   val: 'a';
 }
+.was-string {
+  val: 'a' 'b';
+}
 .array {
   val: 'a' 'b' 'c';
 }
