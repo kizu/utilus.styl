@@ -38,3 +38,27 @@ $foo = 'e', 'f' 'g'
   temp = temp 'd'
   val: prepend($foo, temp)
 
+$foo = 'b'
+.through_comma
+  val: prepend($foo, 'a', true)
+
+$foo = 'b' 'c'
+.through_comma2
+  val: prepend($foo, 'a', true)
+
+$foo = 'b', 'c'
+.through_comma3
+  val: prepend($foo, 'a', true)
+
+$foo = 'b'
+.through_space
+  val: prepend($foo, 'a', false)
+
+$foo = 'b' 'c'
+.through_space2
+  val: prepend($foo, 'a', false)
+
+$foo = 'b', 'c'
+.through_space3
+  val: prepend($foo, 'a', false)
+

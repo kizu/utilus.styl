@@ -53,15 +53,22 @@ proxy(func, args...)
 
 
 // Prepend the given array with given value
-prepend($where, $what)
+prepend($where, $what, $use_comma = auto)
   $result = $what
   if is_comma_list($where)
-    for $item in $where
-      $result = $result, $item
+    for $item, $index in $where
+      if $index == 0 and $use_comma == false
+        $result = $result $item
+      else
+        $result = $result, $item
   else
-    for $item in $where
-      push($result, $item)
+    for $item, $index in $where
+      if $index == 0 and $use_comma == true
+        $result = $result, $item
+      else
+        $result = $result $item
   return $result
+
 
 // Remove the first item, return the original array.
 remove_first($where)

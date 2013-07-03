@@ -25,3 +25,21 @@
 .super_mixed {
   val: 'a' 'b', 'c' 'd', 'e', 'f' 'g';
 }
+.through_comma {
+  val: 'a', 'b';
+}
+.through_comma2 {
+  val: 'a', 'b' 'c';
+}
+.through_comma3 {
+  val: 'a', 'b', 'c';
+}
+.through_space {
+  val: 'a' 'b';
+}
+.through_space2 {
+  val: 'a' 'b' 'c';
+}
+.through_space3 {
+  val: 'a' 'b', 'c';
+}
