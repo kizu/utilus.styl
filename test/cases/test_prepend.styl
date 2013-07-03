@@ -1,0 +1,40 @@
+@import "../../utilus"
+
+$foo = ()
+.had-none
+  val: prepend($foo,'a')
+
+// $foo = 'b'
+// .was-string
+//   val: prepend($foo, 'a')
+
+$foo = 'b' 'c'
+.array
+  val: prepend($foo, 'a')
+
+$foo = 'b', 'c'
+.comma-list
+  val: prepend($foo, 'a')
+
+$foo = 'b', 'c' 'd'
+.mixed1
+  val: prepend($foo, 'a')
+
+$foo = 'b' 'c', 'd'
+.mixed2
+  val: prepend($foo, 'a')
+
+$foo = 'c' 'd'
+.prepend_array
+  val: prepend($foo, 'a' 'b')
+
+$foo = 'c', 'd'
+.prepend_list
+  val: prepend($foo, 'a' 'b')
+
+$foo = 'e', 'f' 'g'
+.super_mixed
+  temp = 'a' 'b', 'c'
+  temp = temp 'd'
+  val: prepend($foo, temp)
+

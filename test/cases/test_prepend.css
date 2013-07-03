@@ -1,0 +1,24 @@
+.had-none {
+  val: 'a';
+}
+.array {
+  val: 'a' 'b' 'c';
+}
+.comma-list {
+  val: 'a', 'b', 'c';
+}
+.mixed1 {
+  val: 'a', 'b', 'c' 'd';
+}
+.mixed2 {
+  val: 'a', 'b' 'c', 'd';
+}
+.prepend_array {
+  val: 'a' 'b' 'c' 'd';
+}
+.prepend_list {
+  val: 'a' 'b', 'c', 'd';
+}
+.super_mixed {
+  val: 'a' 'b', 'c' 'd', 'e', 'f' 'g';
+}

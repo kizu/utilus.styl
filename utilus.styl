@@ -1,12 +1,32 @@
+// Simple shortcut to check if the argument is an array
+is_array()
+  return length(arguments) > 1
+
+
+// Simple shortcut to check if the argument is a hash
+is_hash()
+  return (arguments[0][1] or arguments[0][1] == "0") ? true : false
+
+
+// Simple shortcut to check if the arguments are separated by comma
+is_comma_list()
+  for $item, $index in arguments
+    if $index == 0
+      $test = $item
+    else
+      $test = $test, $item
+  return s('%s',arguments) == s('%s',$test)
+
+
 // Stylus don't allow us to reassign global variables in functions, so I made this:
 //   `reassign($foo,"new")` is like `$foo = "new"`, but now works in functions, yays!
 // However, you need to use this variable like `clone($var)`, or it would get the ressigned value everywhere
-
 reassign($where, $what)
   $where[0] = '' // So if there is a multidimensional array, the pop would pop the appropriate item at last
   for i in $where
     $void = pop($where)
   push($where,$what)
+
 
 // Proxy for throwing arguments into some function
 proxy(func, args...)
@@ -29,6 +49,33 @@ proxy(func, args...)
   else if length(args) == 7
     func(args[0],args[1],args[2],args[3],args[4],args[5],args[6])
 
+
+// Prepend the given array with given value
+prepend($where, $what)
+  $result = $what
+  if is_comma_list($where)
+    for $item in $where
+      $result = $result, $item
+  else
+    for $item in $where
+      push($result, $item)
+  return $result
+
+// Remove the first item, return the original array.
+remove_first($where)
+  $result = unquote('')
+  if is_comma_list($where)
+    for $item, $index in $where
+      if $index == 1
+        $result = $item
+      else if $index > 1
+        $result = $result, $item
+  else
+    for $item, $index in $where
+      push($result, $item) if $index > 0
+  return $result
+
+
 // Do some func on every item of the given argument (second)
 mass(func, args...)
   what = args[0]
@@ -40,26 +87,6 @@ mass(func, args...)
       newargs[1] = w
       what[i] = proxy(mass, newargs)
   return what
-
-
-// Simple shortcut to check if the argument is an array
-is_array()
-  return length(arguments) > 1
-
-
-// Simple shortcut to check if the argument is a hash
-is_hash()
-  return (arguments[0][1] or arguments[0][1] == "0") ? true : false
-
-
-// Simple shortcut to check if the arguments are separated by comma
-is_comma_list()
-  for $item, $index in arguments
-    if $index == 0
-      $test = $item
-    else
-      $test = $test, $item
-  return s('%s',arguments) == s('%s',$test)
 
 
 // Added functions to round things with the given precise
@@ -179,21 +206,6 @@ get_sides($where, $fallback = 0)
   $left = auto if right in $where
 
   return $top $right $bottom $left
-
-
-// Remove the first item, return the original array.
-remove_first($where)
-  $result = unquote('')
-  if is_comma_list($where)
-    for $item, $index in $where
-      if $index == 1
-        $result = $item
-      else if $index > 1
-        $result = $result, $item
-  else
-    for $item, $index in $where
-      push($result, $item) if $index > 0
-  return $result
 
 
 /* Color functions
