@@ -8,11 +8,14 @@ reassign($where, $what)
     $void = pop($where)
   push($where,$what)
 
-
 // Proxy for throwing arguments into some function
-proxy(func, args)
+proxy(func, args...)
+  // If we get a single nested array, make it not nested
   if length(args) == 1
-    func(args)
+    args = args[0]
+
+  if length(args) == 1
+    func(args2)
   else if length(args) == 2
     func(args[0],args[1])
   else if length(args) == 3
