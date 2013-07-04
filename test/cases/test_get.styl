@@ -1,0 +1,36 @@
+@import "../../utilus"
+
+$a = 'a' 1, 'b' 1
+$b = 'a', 'b' 1
+$c = 'a' 1, 'b'
+$d = 'a', 'b'
+$e = 'a' 1
+$f = 'a' 1 2 3, 'b' $a
+
+.foo_a
+  val_a: get($a, 'a')
+  val_b: get($a, 'b')
+
+.foo_b
+  val_a: get($b, 'a')
+  val_b: get($b, 'b')
+
+.foo_c
+  val_a: get($c, 'a')
+  val_b: get($c, 'b')
+
+.foo_d
+  val_a: get($d, 'a')
+  val_b: get($d, 'b')
+
+.foo_e
+  val_a: get($e, 'a')
+  val_b: get($e, 'b')
+
+.foo_f
+  val_a: get($f, 'a')
+  val_b: get($f, 'b')
+
+.foo_g
+  val_a: get($a, 'c', 2)
+  val_b: get($e, 'b', $d)

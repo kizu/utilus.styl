@@ -1,0 +1,28 @@
+.foo_a {
+  val_a: 1;
+  val_b: 1;
+}
+.foo_b {
+  val_a: true;
+  val_b: 1;
+}
+.foo_c {
+  val_a: 1;
+  val_b: true;
+}
+.foo_d {
+  val_a: true;
+  val_b: true;
+}
+.foo_e {
+  val_a: 1;
+  val_b: false;
+}
+.foo_f {
+  val_a: 1 2 3;
+  val_b: 'a' 1, 'b' 1;
+}
+.foo_g {
+  val_a: 2;
+  val_b: 'a', 'b';
+}

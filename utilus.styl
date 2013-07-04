@@ -129,13 +129,21 @@ flatten()
 // Hash getter with possible fallback.
 // Returns `false` if nothing found, or no `fallback` given
 get($hash, $key = false, $fallback = false)
+  $result = false
   if is_array($hash) and $key
-    return $pair[1..length($pair)] if $pair[0] == $key for $pair in $hash if is_hash($hash)
-    return $hash[1..length($hash)] if $hash[0] == $key
+    if is_comma_list($hash)
+      for $pair in $hash
+        if $result == false and type($result) == 'boolean'
+          $result = $pair[1..length($pair)] if $pair[0] == $key
+    else
+      $result = $hash[1..length($hash)] if $hash[0] == $key
 
-  return $fallback
-  // Should we return there the `$hash` itself?
-  // Should we make sure that $fallback exists?
+  if $result == null
+    $result = true
+  if $result == false and type($result) == 'boolean'
+    $result = $fallback
+
+  return $result
   // What if hash contains multiple items with the same key?
 
 
