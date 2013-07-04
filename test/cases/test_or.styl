@@ -1,0 +1,32 @@
+@import "../../utilus"
+
+foo()
+  return 10px
+
+foo2()
+  return ''
+
+foo3()
+  return false
+foo4()
+  if false
+    return true
+
+.foo
+  val: or(0, 1)
+.foo
+  val: or(10px, 20px)
+.foo
+  val: or(false, 20px)
+.foo
+  val: or(foo3(), foo2(), foo())
+.foo
+  val: or(false 10px, 10px false)
+.foo
+  val: or(0 0, 100px 100px)
+.foo
+  val: or(null)
+.foo
+  val: or(10px)
+.foo
+  val: or(foo4()) if or(foo4())
