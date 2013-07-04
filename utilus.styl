@@ -98,20 +98,6 @@ mass(func, args...)
   return what
 
 
-// Added functions to round things with the given precise
-floor_precise($number, $precision = 0)
-  $multiplier = 10 ** $precision
-  return floor($number * $multiplier) / $multiplier
-
-ceil_precise($number, $precision = 0)
-  $multiplier = 10 ** $precision
-  return ceil($number * $multiplier) / $multiplier
-
-round_precise($number, $precision = 0)
-  $multiplier = 10 ** $precision
-  return round($number * $multiplier) / $multiplier
-
-
 // Returns first defined variable or entity, false otherwise
 //   predefined arguments are needed so the function would
 //   return an array if it's the only argument
@@ -241,11 +227,11 @@ rgb2rgba(color, underlay = #FFF)
 
   a = min(a1,min(a2,a3))
 
-  r = r2 + (r1 - r2) / floor_precise(a, 2)
-  g = g2 + (g1 - g2) / floor_precise(a, 2)
-  b = b2 + (b1 - b2) / floor_precise(a, 2)
+  r = r2 + (r1 - r2) / floor(a, 2)
+  g = g2 + (g1 - g2) / floor(a, 2)
+  b = b2 + (b1 - b2) / floor(a, 2)
 
-  a = round_precise(a, 2)
+  a = round(a, 2)
 
   return rgba(r,g,b,a)
 
@@ -311,7 +297,7 @@ contrast($top,$bottom = #FFF)
     $ratio = $l1 / $l2
     if $l2 > $l1
       $ratio = 1 / $ratio
-    return round_precise($ratio,1)
+    return round($ratio,1)
   else
     // FIXME: some minor difference there with http://leaverou.github.com/contrast-ratio/
     $closest = \
@@ -320,5 +306,5 @@ contrast($top,$bottom = #FFF)
           min(max(0, (blue($top)  - blue($bottom)  * alpha($bottom)) / (1 - alpha($bottom))),255))
     $max = max(contrast($top,blend($bottom,#FFF)),contrast($top,blend($bottom,#000)))
     $min = contrast($top,$closest)
-    return (round_precise(($min + $max) / 2, 2) $min $max)
+    return (round(($min + $max) / 2, 2) $min $max)
 
