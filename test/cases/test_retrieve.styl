@@ -1,0 +1,23 @@
+@import "../../utilus"
+
+$ar1 = 10px #FFF false 'lol' foobar 0.5
+$ar2 = 10px #FFF false 'nolol' foobar 0.5
+$ar3 = 10px #000 false foobar 0.5
+$ar4 = 10px #FFF false foobar 0
+$ar5 = 10px #FFF false barfoo
+
+.foo1
+  val: retrieve($ar1, 'lol' 0.5 foobar)
+
+.foo2
+  val: retrieve($ar2, 'lol' 0.5 foobar)
+
+// .foo3
+//   val: retrieve($ar3, 'lol' #FFF 0.5 foobar)
+
+.foo4
+  val: retrieve($ar4, 'lol' 0.5 foobar)
+
+.foo5
+  val: retrieve($ar5, 'lol' 0.5 foobar)
+

@@ -1,0 +1,12 @@
+.foo1 {
+  val: 'lol';
+}
+.foo2 {
+  val: 0.5;
+}
+.foo4 {
+  val: foobar;
+}
+.foo5 {
+  val: false;
+}
