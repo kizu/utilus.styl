@@ -1,0 +1,69 @@
+@import "../../utilus"
+
+$foo = ()
+.had-none
+  val: append($foo,'a')
+
+$foo = 'b'
+.was-string
+  val: append($foo, 'a')
+
+$foo = 'b' 'c'
+.array
+  val: append($foo, 'a')
+
+$foo = 'b', 'c'
+.comma-list
+  val: append($foo, 'a')
+
+$foo = 'b', 'c' 'd'
+.mixed1
+  val: append($foo, 'a')
+
+$foo = 'b' 'c', 'd'
+.mixed2
+  val: append($foo, 'a')
+
+// Not sure this should be without comma
+$foo = 'c' 'd'
+.append_array
+  val: append($foo, 'a' 'b')
+
+$foo = 'c', 'd'
+.append_list
+  val: append($foo, 'a' 'b')
+
+$foo = 'e', 'f' 'g'
+.super_mixed
+  temp = 'a' 'b', 'c'
+  temp = temp 'd'
+  val: append($foo, temp)
+
+$foo = 'b'
+.through_comma
+  val: append($foo, 'a', true)
+
+$foo = 'b' 'c'
+.through_comma2
+  val: append($foo, 'a', true)
+
+$foo = 'b', 'c'
+.through_comma3
+  val: append($foo, 'a', true)
+
+$foo = 'b'
+.through_space
+  val: append($foo, 'a', false)
+
+$foo = 'b' 'c'
+.through_space2
+  val: append($foo, 'a', false)
+
+$foo = 'b', 'c'
+.through_space3
+  val: append($foo, 'a', false)
+
+$foo = 'c', 'd'
+.through_space4
+  val: append($foo, 'a' 'b', false)
+

@@ -52,6 +52,30 @@ proxy(func, args...)
     func(args[0],args[1],args[2],args[3],args[4],args[5],args[6])
 
 
+// Proper append the given array with given item
+append($first, $second, $use_comma = auto)
+  $result = clone($first)
+
+  if length($first) == 0
+    $result = $second
+  else
+    if $use_comma != false
+      if is_comma_list($first) or (!is_array($second) and $use_comma != true)
+        push($result, $second)
+      else
+        $result = $first, $second
+        $result[0] = $first
+        $result[1] = $second
+    else
+      if is_comma_list($first)
+        push($result[length($result) - 1], $second)
+      else
+        push($result, $second)
+
+  p($result)
+  return $result
+
+
 // Prepend the given array with given value
 prepend($where, $what, $use_comma = auto)
   $result = $what
