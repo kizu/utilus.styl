@@ -53,7 +53,7 @@ proxy(func, args...)
 
 
 // Proper append the given array with given item
-append($first, $second, $use_comma = auto)
+append_($first, $second, $use_comma = auto)
   $result = clone($first)
 
   if length($first) == 0
@@ -72,7 +72,6 @@ append($first, $second, $use_comma = auto)
       else
         push($result, $second)
 
-  p($result)
   return $result
 
 
