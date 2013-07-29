@@ -8,7 +8,7 @@
   "description": "Some useful helper mixins for Stylus",
   "keywords": [ "stylus", "mixins" ],
   "homepage": "https://github.com/kizu/utilus.styl#readme",
-  "bugs": { "url": "http://github.com/kizu/utilus/issues" },
+  "bugs": { "url": "http://github.com/kizu/utilus.styl/issues" },
 
   "repository": {
     "type": "git",
@@ -24,5 +24,5 @@
     "test": "./node_modules/.bin/mocha --require should --reporter list"
   },
 
-  "engines": { "node": "*" }
+  "engines": { "node": ">=0.6" }
 }
