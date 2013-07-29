@@ -1,18 +1,28 @@
 {
   "name": "utilus.styl",
-  "description": "Just some helpers for Stylus",
   "version": "0.1.0",
+
+  "author": "Roman Komarov <kizmarh@ya.ru> (http://kizu.ru/en/)",
+  "licence": "MIT",
+
+  "description": "Some useful helper mixins for Stylus",
+  "keywords": [ "stylus", "mixins" ],
+  "homepage": "https://github.com/kizu/utilus.styl#readme",
+  "bugs": { "url": "http://github.com/kizu/utilus/issues" },
+
   "repository": {
     "type": "git",
     "url": "git://github.com/kizu/utilus.styl.git"
   },
-  "dependencies": {
-    "stylus": "0.x"
-  },
   "devDependencies": {
+    "stylus": "0.35.x",
     "mocha": "*",
     "should": "*"
   },
-  "author": "Roman Komarov <kizu@kizu.ru>",
+
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --require should --reporter list"
+  },
+
   "engines": { "node": "*" }
 }
