@@ -1,4 +1,6 @@
-# Just some helpers for [Stylus](http://learnboost.github.com/stylus)
+# utilus.styl [![Build Status](https://travis-ci.org/kizu/utilus.styl.png?branch=master)](https://travis-ci.org/kizu/utilus.styl)
+
+Just some helpers for [Stylus](http://learnboost.github.com/stylus)
 
 More robust description coming soon :)
 
