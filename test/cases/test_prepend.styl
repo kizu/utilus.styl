@@ -2,63 +2,63 @@
 
 $foo = ()
 .had-none
-  val: prepend($foo,'a')
+  val: utilus_prepend($foo,'a')
 
 $foo = 'b'
 .was-string
-  val: prepend($foo, 'a')
+  val: utilus_prepend($foo, 'a')
 
 $foo = 'b' 'c'
 .array
-  val: prepend($foo, 'a')
+  val: utilus_prepend($foo, 'a')
 
 $foo = 'b', 'c'
 .comma-list
-  val: prepend($foo, 'a')
+  val: utilus_prepend($foo, 'a')
 
 $foo = 'b', 'c' 'd'
 .mixed1
-  val: prepend($foo, 'a')
+  val: utilus_prepend($foo, 'a')
 
 $foo = 'b' 'c', 'd'
 .mixed2
-  val: prepend($foo, 'a')
+  val: utilus_prepend($foo, 'a')
 
 $foo = 'c' 'd'
 .prepend_array
-  val: prepend($foo, 'a' 'b')
+  val: utilus_prepend($foo, 'a' 'b')
 
 $foo = 'c', 'd'
 .prepend_list
-  val: prepend($foo, 'a' 'b')
+  val: utilus_prepend($foo, 'a' 'b')
 
 $foo = 'e', 'f' 'g'
 .super_mixed
   temp = 'a' 'b', 'c'
   temp = temp 'd'
-  val: prepend($foo, temp)
+  val: utilus_prepend($foo, temp)
 
 $foo = 'b'
 .through_comma
-  val: prepend($foo, 'a', true)
+  val: utilus_prepend($foo, 'a', true)
 
 $foo = 'b' 'c'
 .through_comma2
-  val: prepend($foo, 'a', true)
+  val: utilus_prepend($foo, 'a', true)
 
 $foo = 'b', 'c'
 .through_comma3
-  val: prepend($foo, 'a', true)
+  val: utilus_prepend($foo, 'a', true)
 
 $foo = 'b'
 .through_space
-  val: prepend($foo, 'a', false)
+  val: utilus_prepend($foo, 'a', false)
 
 $foo = 'b' 'c'
 .through_space2
-  val: prepend($foo, 'a', false)
+  val: utilus_prepend($foo, 'a', false)
 
 $foo = 'b', 'c'
 .through_space3
-  val: prepend($foo, 'a', false)
+  val: utilus_prepend($foo, 'a', false)
 

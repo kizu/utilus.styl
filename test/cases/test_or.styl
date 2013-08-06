@@ -13,20 +13,20 @@ foo4()
     return true
 
 .foo
-  val: or(0, 1)
+  val: utilus_or(0, 1)
 .foo
-  val: or(10px, 20px)
+  val: utilus_or(10px, 20px)
 .foo
-  val: or(false, 20px)
+  val: utilus_or(false, 20px)
 .foo
-  val: or(foo3(), foo2(), foo())
+  val: utilus_or(foo3(), foo2(), foo())
 .foo
-  val: or(false 10px, 10px false)
+  val: utilus_or(false 10px, 10px false)
 .foo
-  val: or(0 0, 100px 100px)
+  val: utilus_or(0 0, 100px 100px)
 .foo
-  val: or(null)
+  val: utilus_or(null)
 .foo
-  val: or(10px)
+  val: utilus_or(10px)
 .foo
-  val: or(foo4()) if or(foo4())
+  val: utilus_or(foo4()) if utilus_or(foo4())

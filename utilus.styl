@@ -1,15 +1,18 @@
 // Simple shortcut to check if the argument is an array
-is_array()
+utilus_is_array()
   return length(arguments) > 1
 
+is_array ?= utilus_is_array
 
 // Simple shortcut to check if the argument is a hash
-is_hash()
+utilus_is_hash()
   return (arguments[0][1] or arguments[0][1] == "0") ? true : false
+
+is_hash ?= utilus_is_hash
 
 
 // Simple shortcut to check if the arguments are separated by comma
-is_comma_list()
+utilus_is_comma_list()
   return false unless is_array(arguments)
 
   for $item, $index in arguments
@@ -19,19 +22,23 @@ is_comma_list()
       $test = $test, $item
   return s('%s',arguments) == s('%s',$test)
 
+is_comma_list ?= utilus_is_comma_list
+
 
 // Stylus don't allow us to reassign global variables in functions, so I made this:
 //   `reassign($foo,"new")` is like `$foo = "new"`, but now works in functions, yays!
 // However, you need to use this variable like `clone($var)`, or it would get the ressigned value everywhere
-reassign($where, $what)
+utilus_reassign($where, $what)
   $where[0] = '' // So if there is a multidimensional array, the pop would pop the appropriate item at last
   for i in $where
     $void = pop($where)
   push($where,$what)
 
+reassign ?= utilus_reassign
+
 
 // Proxy for throwing arguments into some function
-proxy(func, args...)
+utilus_proxy(func, args...)
   // If we get a single nested array, make it not nested
   if length(args) == 1
     args = args[0]
@@ -51,9 +58,11 @@ proxy(func, args...)
   else if length(args) == 7
     func(args[0],args[1],args[2],args[3],args[4],args[5],args[6])
 
+proxy ?= utilus_proxy
+
 
 // Proper append the given array with given item
-append_($first, $second, $use_comma = auto)
+utilus_append($first, $second, $use_comma = auto)
   $result = clone($first)
 
   if length($first) == 0
@@ -76,7 +85,7 @@ append_($first, $second, $use_comma = auto)
 
 
 // Prepend the given array with given value
-prepend($where, $what, $use_comma = auto)
+utilus_prepend($where, $what, $use_comma = auto)
   $result = $what
   if is_comma_list($where)
     for $item, $index in $where
@@ -94,7 +103,7 @@ prepend($where, $what, $use_comma = auto)
 
 
 // Remove the first item, return the original array.
-remove_first($where)
+utilus_remove_first($where)
   $result = unquote('')
   if is_comma_list($where)
     for $item, $index in $where
@@ -107,9 +116,11 @@ remove_first($where)
       push($result, $item) if $index > 0
   return $result
 
+remove_first ?= utilus_remove_first
+
 
 // Do some func on every item of the given argument (second)
-mass(func, args...)
+utilus_mass(func, args...)
   what = args[0]
   if !is_array(what)
     what = proxy(func, args)
@@ -120,14 +131,18 @@ mass(func, args...)
       what[i] = proxy(mass, newargs)
   return what
 
+mass ?= utilus_mass
+
 
 // Returns first defined variable or entity, false otherwise
 //   predefined arguments are needed so the function would
 //   return an array if it's the only argument
-or($arg1, $arg2 = false, args...)
+utilus_or($arg1, $arg2 = false, args...)
   for $arg in arguments
     return $arg if $arg != false and (typeof($arg) != 'ident' or is_array($arg) or $arg == 0)
   return false
+
+// or ?= utilus_or
 
 
 // Flatten nested arrays to a flat one-level array
@@ -135,7 +150,7 @@ or($arg1, $arg2 = false, args...)
 //   a: flatten(1..5, 7..10, 14..15, 17..18)
 //   a: flatten(1..5 7..10 14..15 17..18)
 
-flatten()
+utilus_flatten()
   result = ()
 
   compute()
@@ -148,10 +163,12 @@ flatten()
   compute(arguments)
   return result
 
+flatten ?= utilus_flatten
+
 
 // Hash getter with possible fallback.
 // Returns `false` if nothing found, or no `fallback` given
-get($hash, $key = false, $fallback = false)
+utilus_get($hash, $key = false, $fallback = false)
   $result = false
   if is_array($hash) and $key
     if is_comma_list($hash)
@@ -169,10 +186,12 @@ get($hash, $key = false, $fallback = false)
   return $result
   // What if hash contains multiple items with the same key?
 
+get ?= utilus_get
+
 
 // Getter of an argument at the given index
 //   Should it be merged with either simple `get` or `or`?
-get_n($where, $fallback = false, $index = 0, $type = 'any')
+utilus_get_n($where, $fallback = false, $index = 0, $type = 'any')
   $i = 0
   for $arg in $where
     if $type == 'any' or $type == type($arg)
@@ -182,24 +201,38 @@ get_n($where, $fallback = false, $index = 0, $type = 'any')
         $i = $i + 1
   return $fallback
 
-get_string($where, $fallback = false, $index = 0)
+get_n ?= utilus_get_n
+
+utilus_get_string($where, $fallback = false, $index = 0)
   get_n($where, $fallback, $index, 'string')
 
-get_ident($where, $fallback = false, $index = 0)
+get_string ?= utilus_get_string
+
+utilus_get_ident($where, $fallback = false, $index = 0)
   get_n($where, $fallback, $index, 'ident')
 
-get_unit($where, $fallback = false, $index = 0)
+get_ident ?= utilus_get_ident
+
+utilus_get_unit($where, $fallback = false, $index = 0)
   get_n($where, $fallback, $index, 'unit')
 
-get_color($where, $fallback = false, $index = 0)
+get_unit ?= utilus_get_unit
+
+utilus_get_color($where, $fallback = false, $index = 0)
   get_n($where, $fallback, $index, 'rgba')
 
+get_color ?= utilus_get_color
+
+
 // Get the item from arguments with the same type of the given fallback
-alike($where, $fallback, $index = 0)
+utilus_alike($where, $fallback, $index = 0)
   get_n($where, $fallback, $index, type($fallback))
 
+alike ?= utilus_alike
+
+
 // Retrieve one of the given items with optional fallback
-retrieve($where, $what, $fallback = false)
+utilus_retrieve($where, $what, $fallback = false)
   if is_array($what)
     for $what_item in $what
       if $what_item in $where
@@ -209,16 +242,22 @@ retrieve($where, $what, $fallback = false)
       return $what
   return $fallback
 
+retrieve ?= utilus_retrieve
+
+
 // Count the arguments by the given type
-count($where, $what = 'unit')
+utilus_count($where, $what = 'unit')
   $count = 0
   for $item in $where
     if type($item) == $what
       $count = $count + 1
   return $count
 
+count ?= utilus_count
+
+
 // retrieve the sides array, like in paddings, margins, borders etc.
-get_sides($where, $fallback = 0)
+utilus_get_sides($where, $fallback = 0)
   // Could be refactored to have only one for running
   $top = alike($where, $fallback)
   $right = alike($where, $top, 1)
@@ -233,6 +272,8 @@ get_sides($where, $fallback = 0)
 
   return $top $right $bottom $left
 
+get_sides ?= utilus_get_sides
+
 
 /* Color functions
 ========================================*/
@@ -241,7 +282,7 @@ get_sides($where, $fallback = 0)
 // Inspiration: https://github.com/LearnBoost/stylus/issues/313
 // Use as
 //   color: rgb2rgba(#CC6699)
-rgb2rgba(color, underlay = #FFF)
+utilus_rgb2rgba(color, underlay = #FFF)
   r1 = red(color)
   g1 = green(color)
   b1 = blue(color)
@@ -266,21 +307,25 @@ rgb2rgba(color, underlay = #FFF)
 
   return rgba(r,g,b,a)
 
+rgb2rgba ?= utilus_rgb2rgba
+
 // Alias
-transparentify = rgb2rgba
+transparentify ?= utilus_rgb2rgba
 
 
 // Getting luminance of a color,
 //   got from https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js#L55
-luminance($color)
+utilus_luminance($color)
   f($c)
     $c = $c / 255
     return ($c < 0.03928) ? ($c / 12.92) : (($c + 0.055) / 1.055) ** 2.4;
   return 0.2126 * f(red($color)) + 0.7152 * f(green($color)) + 0.0722 * f(blue($color));
 
+luminance ?= utilus_luminance
+
 
 // Get just the average color from the given colors.
-average_color()
+utilus_average_color()
   $l = length(arguments)
   $r = 0
   $g = 0
@@ -300,9 +345,11 @@ average_color()
 
   return rgba($r,$g,$b,$a)
 
+average_color ?= utilus_average_color
+
 
 // Basic color blending
-blend($top,$bottom = #FFF)
+utilus_blend($top,$bottom = #FFF)
   // Only normal blending here for now
   return $top if alpha($top) == 1
   return $bottom if alpha($top) == 0
@@ -314,6 +361,8 @@ blend($top,$bottom = #FFF)
 
   return rgba(newR,newG,newB,newA)
 
+blend ?= utilus_blend
+
 
 // Determining contrast ratio,
 //   based on https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js#L108
@@ -321,7 +370,7 @@ blend($top,$bottom = #FFF)
 //   3   .. 4.5 == bad for small text
 //   4.5 .. 7   == perfect for big text
 //   7   ..     == perfect for any size
-contrast($top,$bottom = #FFF)
+utilus_contrast($top,$bottom = #FFF)
   if alpha($bottom) >= 1
     $l1 = luminance($bottom) + .05
     $l2 = luminance( alpha($top) < 1 ? blend($top,$bottom) : $top ) + .05
@@ -338,4 +387,6 @@ contrast($top,$bottom = #FFF)
     $max = max(contrast($top,blend($bottom,#FFF)),contrast($top,blend($bottom,#000)))
     $min = contrast($top,$closest)
     return (round(($min + $max) / 2, 2) $min $max)
+
+contrast ?= utilus_contrast
 
