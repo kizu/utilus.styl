@@ -26,3 +26,11 @@
   val_a: 2;
   val_b: 'a', 'b';
 }
+.foo_h {
+  val_a: 1;
+  val_b: 1;
+}
+.foo_i {
+  val_a: true;
+  val_b: 1;
+}

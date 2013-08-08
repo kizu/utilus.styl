@@ -6,16 +6,25 @@ $foo2 = 'a', 'b'
 $foo3 = 'a' 'b', 'c'
 $foo4 = 'a', 'b' 'c'
 $foo5 = 'a' 'b', 'c' 'd'
+$foo6 = 'a' ('b' 'c')
+$foo7 = ('a' 'b') 'c'
+$foo8 = ('a' 'b') ('c' 'd')
 
-.foo
+.foo0
   {val}: is_hash($foo0)
-.foo
+.foo1
   {val}: is_hash($foo1)
-.foo
+.foo2
   {val}: is_hash($foo2)
-.foo
+.foo3
   {val}: is_hash($foo3)
-// .foo
-//   {val}: is_hash($foo4)
-.foo
+.foo4
+  {val}: is_hash($foo4)
+.foo5
   {val}: is_hash($foo5)
+.foo6
+  {val}: is_hash($foo6)
+.foo7
+  {val}: is_hash($foo7)
+.foo8
+  {val}: is_hash($foo8)

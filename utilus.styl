@@ -6,14 +6,19 @@ is_array ?= utilus_is_array
 
 // Simple shortcut to check if the argument is a hash
 utilus_is_hash()
-  return (arguments[0][1] or arguments[0][1] == "0") ? true : false
+  return false unless utilus_is_array(arguments)
+
+  for $item in arguments
+    return true if utilus_is_array($item)
+
+  return false
 
 is_hash ?= utilus_is_hash
 
 
 // Simple shortcut to check if the arguments are separated by comma
 utilus_is_comma_list()
-  return false unless is_array(arguments)
+  return false unless utilus_is_array(arguments)
 
   for $item, $index in arguments
     if $index == 0
@@ -69,14 +74,14 @@ utilus_append($first, $second, $use_comma = auto)
     $result = $second
   else
     if $use_comma != false
-      if is_comma_list($first) or (!is_array($second) and $use_comma != true)
+      if utilus_is_comma_list($first) or (!utilus_is_array($second) and $use_comma != true)
         push($result, $second)
       else
         $result = $first, $second
         $result[0] = $first
         $result[1] = $second
     else
-      if is_comma_list($first)
+      if utilus_is_comma_list($first)
         push($result[length($result) - 1], $second)
       else
         push($result, $second)
@@ -87,7 +92,7 @@ utilus_append($first, $second, $use_comma = auto)
 // Prepend the given array with given value
 utilus_prepend($where, $what, $use_comma = auto)
   $result = $what
-  if is_comma_list($where)
+  if utilus_is_comma_list($where)
     for $item, $index in $where
       if $index == 0 and $use_comma == false
         $result = $result $item
@@ -105,7 +110,7 @@ utilus_prepend($where, $what, $use_comma = auto)
 // Remove the first item, return the original array.
 utilus_remove_first($where)
   $result = unquote('')
-  if is_comma_list($where)
+  if utilus_is_comma_list($where)
     for $item, $index in $where
       if $index == 1
         $result = $item
@@ -122,13 +127,13 @@ remove_first ?= utilus_remove_first
 // Do some func on every item of the given argument (second)
 utilus_mass(func, args...)
   what = args[0]
-  if !is_array(what)
-    what = proxy(func, args)
+  if !utilus_is_array(what)
+    what = utilus_proxy(func, args)
   else
     for w,i in what
       newargs = arguments
       newargs[1] = w
-      what[i] = proxy(mass, newargs)
+      what[i] = utilus_proxy(mass, newargs)
   return what
 
 mass ?= utilus_mass
@@ -139,7 +144,7 @@ mass ?= utilus_mass
 //   return an array if it's the only argument
 utilus_or($arg1, $arg2 = false, args...)
   for $arg in arguments
-    return $arg if $arg != false and (typeof($arg) != 'ident' or is_array($arg) or $arg == 0)
+    return $arg if $arg != false and (typeof($arg) != 'ident' or utilus_is_array($arg) or $arg == 0)
   return false
 
 // or ?= utilus_or
@@ -170,13 +175,20 @@ flatten ?= utilus_flatten
 // Returns `false` if nothing found, or no `fallback` given
 utilus_get($hash, $key = false, $fallback = false)
   $result = false
-  if is_array($hash) and $key
-    if is_comma_list($hash)
+  if utilus_is_array($hash) and $key
+    if utilus_is_hash($hash)
       for $pair in $hash
         if $result == false and type($result) == 'boolean'
-          $result = $pair[1..length($pair)] if $pair[0] == $key
+          if utilus_is_array($pair)
+            $result = $pair[1..length($pair)] if $pair[0] == $key
+          else
+            $result = true if $pair == $key
     else
-      $result = $hash[1..length($hash)] if $hash[0] == $key
+      if utilus_is_comma_list($hash)
+        for $item in $hash
+          $result = true if $item == $key
+      else
+        $result = $hash[1..length($hash)] if $hash[0] == $key
 
   if $result == null
     $result = true
@@ -204,36 +216,36 @@ utilus_get_n($where, $fallback = false, $index = 0, $type = 'any')
 get_n ?= utilus_get_n
 
 utilus_get_string($where, $fallback = false, $index = 0)
-  get_n($where, $fallback, $index, 'string')
+  utilus_get_n($where, $fallback, $index, 'string')
 
 get_string ?= utilus_get_string
 
 utilus_get_ident($where, $fallback = false, $index = 0)
-  get_n($where, $fallback, $index, 'ident')
+  utilus_get_n($where, $fallback, $index, 'ident')
 
 get_ident ?= utilus_get_ident
 
 utilus_get_unit($where, $fallback = false, $index = 0)
-  get_n($where, $fallback, $index, 'unit')
+  utilus_get_n($where, $fallback, $index, 'unit')
 
 get_unit ?= utilus_get_unit
 
 utilus_get_color($where, $fallback = false, $index = 0)
-  get_n($where, $fallback, $index, 'rgba')
+  utilus_get_n($where, $fallback, $index, 'rgba')
 
 get_color ?= utilus_get_color
 
 
 // Get the item from arguments with the same type of the given fallback
 utilus_alike($where, $fallback, $index = 0)
-  get_n($where, $fallback, $index, type($fallback))
+  utilus_get_n($where, $fallback, $index, type($fallback))
 
 alike ?= utilus_alike
 
 
 // Retrieve one of the given items with optional fallback
 utilus_retrieve($where, $what, $fallback = false)
-  if is_array($what)
+  if utilus_is_array($what)
     for $what_item in $what
       if $what_item in $where
         return $what_item
@@ -259,10 +271,10 @@ count ?= utilus_count
 // retrieve the sides array, like in paddings, margins, borders etc.
 utilus_get_sides($where, $fallback = 0)
   // Could be refactored to have only one for running
-  $top = alike($where, $fallback)
-  $right = alike($where, $top, 1)
-  $bottom = alike($where, $top, 2)
-  $left = alike($where, $right, 3)
+  $top = utilus_alike($where, $fallback)
+  $right = utilus_alike($where, $top, 1)
+  $bottom = utilus_alike($where, $top, 2)
+  $left = utilus_alike($where, $right, 3)
 
   // Could use `auto` from arguments instead of using `trbl` keywords
   $top = auto if bottom in $where
@@ -372,8 +384,8 @@ blend ?= utilus_blend
 //   7   ..     == perfect for any size
 utilus_contrast($top,$bottom = #FFF)
   if alpha($bottom) >= 1
-    $l1 = luminance($bottom) + .05
-    $l2 = luminance( alpha($top) < 1 ? blend($top,$bottom) : $top ) + .05
+    $l1 = utilus_luminance($bottom) + .05
+    $l2 = utilus_luminance( alpha($top) < 1 ? utilus_blend($top,$bottom) : $top ) + .05
     $ratio = $l1 / $l2
     if $l2 > $l1
       $ratio = 1 / $ratio
@@ -384,8 +396,8 @@ utilus_contrast($top,$bottom = #FFF)
       rgb(min(max(0, (red($top)   - red($bottom)   * alpha($bottom)) / (1 - alpha($bottom))),255), \
           min(max(0, (green($top) - green($bottom) * alpha($bottom)) / (1 - alpha($bottom))),255), \
           min(max(0, (blue($top)  - blue($bottom)  * alpha($bottom)) / (1 - alpha($bottom))),255))
-    $max = max(contrast($top,blend($bottom,#FFF)),contrast($top,blend($bottom,#000)))
-    $min = contrast($top,$closest)
+    $max = max(utilus_contrast($top,utilus_blend($bottom,#FFF)),utilus_contrast($top,utilus_blend($bottom,#000)))
+    $min = utilus_contrast($top,$closest)
     return (round(($min + $max) / 2, 2) $min $max)
 
 contrast ?= utilus_contrast

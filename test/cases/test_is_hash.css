@@ -1,15 +1,27 @@
-.foo {
+.foo0 {
   val: false;
 }
-.foo {
+.foo1 {
   val: false;
 }
-.foo {
+.foo2 {
   val: false;
 }
-.foo {
+.foo3 {
   val: true;
 }
-.foo {
+.foo4 {
+  val: true;
+}
+.foo5 {
+  val: true;
+}
+.foo6 {
+  val: true;
+}
+.foo7 {
+  val: true;
+}
+.foo8 {
   val: true;
 }

@@ -6,6 +6,8 @@ $c = 'a' 1, 'b'
 $d = 'a', 'b'
 $e = 'a' 1
 $f = 'a' 1 2 3, 'b' $a
+$h = ('a' 1) ('b' 1)
+$i = 'a' ('b' 1)
 
 .foo_a
   val_a: get($a, 'a')
@@ -34,3 +36,12 @@ $f = 'a' 1 2 3, 'b' $a
 .foo_g
   val_a: get($a, 'c', 2)
   val_b: get($e, 'b', $d)
+
+.foo_h
+  val_a: get($h, 'a')
+  val_b: get($h, 'b')
+
+.foo_i
+  val_a: get($i, 'a')
+  val_b: get($i, 'b')
+
