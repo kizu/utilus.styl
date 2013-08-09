@@ -1,6 +1,6 @@
 {
   "name": "utilus.styl",
-  "version": "0.4.0",
+  "version": "0.4.1",
 
   "author": "Roman Komarov <kizmarh@ya.ru> (http://kizu.ru/en/)",
   "licence": "MIT",
@@ -15,7 +15,7 @@
     "url": "git://github.com/kizu/utilus.styl.git"
   },
   "devDependencies": {
-    "stylus": "0.35.x",
+    "stylus": "0.36.x",
     "mocha": "*",
     "should": "*"
   },

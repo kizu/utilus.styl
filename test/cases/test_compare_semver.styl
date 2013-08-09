@@ -1,0 +1,9 @@
+@import "../../utilus"
+
+.a
+  test1: compare_strings('>','1.3.4','1.3.5')
+  test2: compare_strings('<','1.5.3','1.6.x')
+  test3: compare_strings('==','1.5.3','1.5.2')
+  test4: compare_strings('>=','1.3.9','1.4.0')
+  test5: compare_strings('<=','1.5.2','1.5.x')
+  test6: compare_strings('<=','1.5.20','1.5.3')
