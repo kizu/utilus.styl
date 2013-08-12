@@ -1,5 +1,10 @@
 .foo {
   val_a: 'a';
+  val_b: ;
+  val_c: ;
+}
+.foo {
+  val_a: 'a';
   val_b: 'b';
   val_c: 'c';
 }
