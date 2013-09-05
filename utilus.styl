@@ -171,24 +171,31 @@ utilus_flatten()
 flatten ?= utilus_flatten
 
 
+utilus_ident($what)
+  if type($what) == 'function'
+    return '%s' % $what
+  else
+    return $what
+
 // Hash getter with possible fallback.
 // Returns `false` if nothing found, or no `fallback` given
 utilus_get($hash, $key = false, $fallback = false)
+  $key = utilus_ident($key)
   $result = false
   if utilus_is_array($hash) and $key
     if utilus_is_hash($hash)
       for $pair in $hash
         if $result == false and type($result) == 'boolean'
           if utilus_is_array($pair)
-            $result = $pair[1..length($pair)] if $pair[0] == $key
+            $result = $pair[1..length($pair)] if utilus_ident($pair[0]) == $key
           else
-            $result = true if $pair == $key
+            $result = true if utilus_ident($pair) == $key
     else
       if utilus_is_comma_list($hash)
         for $item in $hash
-          $result = true if $item == $key
+          $result = true if utilus_ident($item) == $key
       else
-        $result = $hash[1..length($hash)] if $hash[0] == $key
+        $result = $hash[1..length($hash)] if utilus_ident($hash[0]) == $key
 
   if $result == null
     $result = true
