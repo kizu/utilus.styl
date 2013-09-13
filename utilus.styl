@@ -30,6 +30,17 @@ utilus_is_comma_list()
 is_comma_list ?= utilus_is_comma_list
 
 
+// Check if the given string/ident/whatever could be called as a function
+utilus_is_function($what)
+  $what = unquote($what) if type($what) == 'string'
+  proxy($what)
+    {$what}: 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+  return not '"%s"' % proxy($what) == '"%s: 1, 2, 3, 4, 5, 6, 7, 8, 9;"' % $what
+
+is_function ?= utilus_is_function
+
+
 // Stylus don't allow us to reassign global variables in functions, so I made this:
 //   `reassign($foo,"new")` is like `$foo = "new"`, but now works in functions, yays!
 // However, you need to use this variable like `clone($var)`, or it would get the ressigned value everywhere
