@@ -1,6 +1,6 @@
 {
   "name": "utilus.styl",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "author": "Roman Komarov <kizmarh@ya.ru> (http://kizu.ru/en/)",
   "licence": "MIT",
   "description": "Some useful helper mixins for Stylus",
