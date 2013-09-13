@@ -50,3 +50,9 @@
   val_a: true;
   val_b: 1;
 }
+.par_1 {
+  val_a: 'd' 'e' 'f' 'g';
+  val_b: false;
+  val_c: 'g';
+  val_d: false;
+}

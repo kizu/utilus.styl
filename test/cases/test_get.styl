@@ -69,3 +69,11 @@ $k = c (d 1)
 .foo_k2
   val_a: get($k, 'c')
   val_b: get($k, 'd')
+
+$par = 'a' 'b', ('c' ('d' 'e') ('f' 'g'))
+
+.par_1
+  val_a: get($par, 'c')
+  val_b: get($par, 'd')
+  val_c: get($par, 'c' 'f')
+  val_d: get($par, 'c' 'e')
