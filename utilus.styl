@@ -29,17 +29,11 @@ utilus_is_comma_list()
 
 is_comma_list ?= utilus_is_comma_list
 
-
-// Check if the given string/ident/whatever could be called as a function
-utilus_is_function($what)
-  $what = unquote($what) if type($what) == 'string'
-  proxy($what)
-    {$what}: 1, 2, 3, 4, 5, 6, 7, 8, 9
-
-  return not '"%s"' % proxy($what) == '"%s: 1, 2, 3, 4, 5, 6, 7, 8, 9;"' % $what
+use('is_function.js')
+utilus_is_function($function_name)
+  return _utilus_is_function($function_name)
 
 is_function ?= utilus_is_function
-
 
 // Stylus don't allow us to reassign global variables in functions, so I made this:
 //   `reassign($foo,"new")` is like `$foo = "new"`, but now works in functions, yays!
@@ -198,14 +192,14 @@ utilus_get($hash, $keys = false, $fallback = false)
       unless $any_result
         $any_result = utilus_get($where, $keys, $fallback)
     return $any_result
-  else    
+  else
     if utilus_is_array($keys)
       $key = pop($keys)
       for $subkey in $keys
         $hash = utilus_get($hash, $subkey)
     else
       $key = $keys
-      
+
     $key = utilus_ident($key)
     $result = false
     if utilus_is_array($hash) and $key
