@@ -17,7 +17,7 @@
     "url": "git://github.com/kizu/utilus.styl.git"
   },
   "devDependencies": {
-    "stylus": "0.36.x",
+    "stylus": "git://github.com/Panya/stylus.git#hashes",
     "mocha": "*",
     "should": "*"
   },

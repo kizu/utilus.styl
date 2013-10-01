@@ -185,6 +185,9 @@ utilus_ident($what)
 // Hash getter with possible fallback.
 // Returns `false` if nothing found, or no `fallback` given
 utilus_get($hash, $keys = false, $fallback = false)
+  if type($hash) == 'object'
+    return $hash['' + utilus_ident($keys)] || $fallback
+
   if utilus_ident($hash[0]) == 'any'
     $any_result = false
     $hash = utilus_remove_first($hash)
