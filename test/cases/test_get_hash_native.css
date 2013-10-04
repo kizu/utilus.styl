@@ -20,11 +20,11 @@
 }
 .foo_f {
   val_a: 1 2 3;
-  val_b: [object Object];
+  val_b: {"a":"(1)","b":"(1)"};
 }
 .foo_g {
   val_a: 2;
-  val_b: [object Object];
+  val_b: {"a":"(true)","b":"(true)"};
 }
 .foo_h {
   val_a: 1;
@@ -51,7 +51,7 @@
   val_b: 1;
 }
 .par_1 {
-  val_a: [object Object];
+  val_a: {"d":"('e')","f":"('g')"};
   val_b: ;
   val_c: 'g';
   val_d: ;

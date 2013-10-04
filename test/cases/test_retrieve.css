@@ -10,3 +10,9 @@
 .foo5 {
   val: false;
 }
+.foo6 {
+  val: foo;
+}
+.foo7 {
+  val: 10px;
+}

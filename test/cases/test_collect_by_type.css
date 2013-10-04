@@ -5,7 +5,7 @@
   rgbas: #fff #f00;
   colors: #fff #f00;
   functions: utilus_get rgba;
-  objects: [object Object] [object Object];
+  objects: {} {"a":"(b)","c":"(d)"};
   booleans: false true false;
   arrays: sss rrr a b c;
 }
@@ -16,6 +16,6 @@
   rgbas: #fff;
   colors: #fff;
   functions: utilus_get;
-  objects: [object Object];
+  objects: {};
   booleans: false;
 }
