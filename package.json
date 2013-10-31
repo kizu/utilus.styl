@@ -1,6 +1,6 @@
 {
   "name": "utilus.styl",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "author": "Roman Komarov <kizmarh@ya.ru> (http://kizu.ru/en/)",
   "licence": "MIT",
   "description": "Some useful helper mixins for Stylus",
@@ -17,7 +17,7 @@
     "url": "git://github.com/kizu/utilus.styl.git"
   },
   "devDependencies": {
-    "stylus": "git://github.com/Panya/stylus.git#hashes",
+    "stylus": "0.39.x",
     "mocha": "*",
     "should": "*"
   },
