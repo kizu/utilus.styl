@@ -2,6 +2,11 @@
 # Utilus.styl Changelog
 ---
 
+## v0.8.0 (2013-12-14)
+
+- Reorganized files, added better test-runner.
+- Refactored rgb2rgba, fixed a few bugs in it.
+
 ## v0.7.0
 
 - Using new Stylus with hashes.
