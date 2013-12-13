@@ -13,7 +13,14 @@ utilus_rgb2rgba($foreground, $background = #FFF)
   $g2 = green($background)
   $b2 = blue($background)
 
-  $a1 = $a2 = $a3 = abs($r1 - $r2) / 255 if $r1 != $r2
+  if $r1 != $r2
+    $a1 = $a2 = $a3 = abs($r1 - $r2) / 255
+  else if $g1 != $g2
+    $a1 = $a2 = $a3 = abs($g1 - $g2) / 255
+  else if $b1 != $b2
+    $a1 = $a2 = $a3 = abs($b1 - $b2) / 255
+  else
+    $a1 = $a2 = $a3 = 1
 
   $a1 = abs($r1 - $r2) / (255 - $r2) if not $r2 in ($r1 255)
   $a2 = abs($g1 - $g2) / (255 - $g2) if not $g2 in ($g1 255)
