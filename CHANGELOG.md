@@ -2,6 +2,11 @@
 # Utilus.styl Changelog
 ---
 
+## v0.9.0 (2014-01-20)
+
+- Stylus dep up.
+- Imports to requires.
+
 ## v0.8.0 (2013-12-14)
 
 - Reorganized files, added better test-runner.
