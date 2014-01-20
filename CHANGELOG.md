@@ -6,6 +6,7 @@
 
 - Stylus dep up.
 - Imports to requires.
+- Fixed is_array to work with hashes.
 
 ## v0.8.0 (2013-12-14)
 
