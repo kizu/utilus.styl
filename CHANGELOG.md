@@ -2,6 +2,12 @@
 # Utilus.styl Changelog
 ---
 
+## v0.10.0 (2014-01-23)
+
+- Added `margin-`/`padding-`-`x`/`y` helpers.
+- Added `negate` function to negate numbers in lists.
+- Added `extrude` and `extrude-…` helpers.
+
 ## v0.9.0 (2014-01-20)
 
 - Added the one and powerful `media` helper.
