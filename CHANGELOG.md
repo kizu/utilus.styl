@@ -2,6 +2,10 @@
 # Utilus.styl Changelog
 ---
 
+## v0.10.1 (2014-02-09)
+
+- Fixed `utilus_collect_by_type` to work with hashes, #20.
+
 ## v0.10.0 (2014-01-23)
 
 - Added `margin-`/`padding-`-`x`/`y` helpers.
