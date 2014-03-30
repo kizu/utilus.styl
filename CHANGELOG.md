@@ -2,6 +2,10 @@
 # Utilus.styl Changelog
 ---
 
+## v0.11.0 (2014-03-30)
+
+- Added `one_em` function, for getting the contextual relative unit.
+
 ## v0.10.2 (2014-03-16)
 
 - Fixed `cache` to use proper placeholders.
