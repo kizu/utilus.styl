@@ -1,0 +1,44 @@
+.a
+  test: current_media()
+
+  .b
+    test: current_media()
+
+@media only screen and (min-width: 1024px)
+  .c
+    test: current_media()
+
+.d
+  @media only screen and (min-width: 1024px)
+    test: current_media()
+
+foo()
+  test: current_media()
+
+.e
+  foo()
+
+  .f
+    foo()
+
+@media only screen and (min-width: 1024px)
+  .g
+    foo()
+
+.h
+  @media only screen and (min-width: 1024px)
+    foo()
+
+// Don't work yet
+
+// bar()
+//   @media only screen and (min-width: 1024px)
+//     {block}
+
+// .i
+//   +bar()
+//     foo()
+
+// +bar()
+//   .j
+//     foo()
