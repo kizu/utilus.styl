@@ -2,7 +2,9 @@ $utilus_mixin_cache = {}
 
 utilus_cache($where, $limit_to_func = true)
   $func_name = '' + called_from() + '__'
-  $key = ($limit_to_func ? $func_name : '') + $where
+  $media = current_media()
+  $media = $media ? $media + '__' : ''
+  $key = ($limit_to_func ? $func_name : '') + $media + $where
   if $key in $utilus_mixin_cache
     @extend {"$placeholder_for_" + $utilus_mixin_cache[$key]}
   else

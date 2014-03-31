@@ -7,6 +7,7 @@
 - Added `called_from` function.
 - Added `current_media` function.
 - Using the function's name in the `cache` function.
+- Proper handling of media queries with `cache`.
 
 ## v0.11.0 (2014-03-30)
 
