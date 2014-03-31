@@ -1,0 +1,24 @@
+.test1 {
+  test: ;
+}
+.test2 {
+  test: ;
+}
+.test3 {
+  test: bar;
+}
+.test4 {
+  test: bar baz;
+}
+.test5 {
+  test: bar;
+}
+.test6 {
+  test: bar2;
+}
+.test7 {
+  test: foo3;
+}
+.test8 {
+  test: foo3 bar3;
+}
