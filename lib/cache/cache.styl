@@ -1,7 +1,8 @@
 $utilus_mixin_cache = {}
 
-utilus_cache($where)
-  $key = '' + $where
+utilus_cache($where, $limit_to_func = true)
+  $func_name = '' + called_from() + '__'
+  $key = ($limit_to_func ? $func_name : '') + $where
   if $key in $utilus_mixin_cache
     @extend {"$placeholder_for_" + $utilus_mixin_cache[$key]}
   else

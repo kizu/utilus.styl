@@ -5,6 +5,7 @@
 ## v0.12.0 (in development)
 
 - Added `called_from` function.
+- Using the function's name in the `cache` function.
 
 ## v0.11.0 (2014-03-30)
 
