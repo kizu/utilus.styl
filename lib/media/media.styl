@@ -34,4 +34,7 @@ utilus_flush_media()
       for $block in $blocks
         {$block}
 
+  // Is there a better way to nullify a hash?
+  $utilus_media_cache[0] = {}
+
 flush_media ?= utilus_flush_media

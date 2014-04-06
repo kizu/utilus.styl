@@ -6,8 +6,9 @@
 
 - Added `called_from` function.
 - Added `current_media` function.
-- Using the function's name in the `cache` function.
-- Proper handling of media queries with `cache`.
+- Added proper handling of media queries with `cache`.
+- Added the function's name to the `cache`'s keys.
+- Fixed the `flush_media` from flushing the already flushed cache on the second call.
 - Updated Stylus dep to `0.43`.
 
 ## v0.11.0 (2014-03-30)
