@@ -8,6 +8,7 @@
 - Added `current_media` function.
 - Using the function's name in the `cache` function.
 - Proper handling of media queries with `cache`.
+- Updated Stylus dep to `0.43`.
 
 ## v0.11.0 (2014-03-30)
 

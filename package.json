@@ -17,7 +17,7 @@
     "url": "git://github.com/kizu/utilus.styl.git"
   },
   "devDependencies": {
-    "stylus": "0.42.x",
+    "stylus": "0.43.x",
     "glob": "3.2.x",
     "mocha": "*",
     "should": "*"

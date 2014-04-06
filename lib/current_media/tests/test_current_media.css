@@ -6,12 +6,12 @@
 }
 @media only screen and (min-width: 1024px) {
   .c {
-    test: 'only screen and (min-width: 1024px)';
+    test: '@media (only screen and (min-width: (1024px)))';
   }
 }
 @media only screen and (min-width: 1024px) {
   .d {
-    test: 'only screen and (min-width: 1024px)';
+    test: '@media (only screen and (min-width: (1024px)))';
   }
 }
 .e {
@@ -22,11 +22,11 @@
 }
 @media only screen and (min-width: 1024px) {
   .g {
-    test: 'only screen and (min-width: 1024px)';
+    test: '@media (only screen and (min-width: (1024px)))';
   }
 }
 @media only screen and (min-width: 1024px) {
   .h {
-    test: 'only screen and (min-width: 1024px)';
+    test: '@media (only screen and (min-width: (1024px)))';
   }
 }
