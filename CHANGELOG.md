@@ -2,7 +2,7 @@
 # Utilus.styl Changelog
 ---
 
-## v0.12.0 (in development)
+## v0.12.0 (2014-04-06)
 
 - Added `called_from` function.
 - Added `current_media` function.
