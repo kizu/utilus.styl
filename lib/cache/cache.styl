@@ -1,11 +1,11 @@
 $utilus_mixin_cache = {}
 
-utilus_cache($where, $limit_to_func = true)
+utilus_cache($where)
   $called_from = called_from()
   $func_name = '' + $called_from[0] + '__'
   $media = current_media()
   $media = $media ? $media + '__' : ''
-  $key = ($limit_to_func ? $func_name : '') + $media + $where
+  $key = $func_name + $media + $where
   if 'cache' in $called_from or 'utilus_cache' in $called_from
     {block}
   else
