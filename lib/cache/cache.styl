@@ -2,20 +2,18 @@ $utilus_mixin_cache = {}
 
 utilus_cache($where)
   $called_from = called_from()
-  $func_name = '' + $called_from[0] + '__'
-  $media = current_media()
-  $media = $media ? $media + '__' : ''
-  $key = $func_name + $media + $where
-  if 'cache' in $called_from or 'utilus_cache' in $called_from
+  $key = '' + $called_from[0] + '__' + (current_media() or 'no-media') + '__' + $where
+
+  if $key in $utilus_mixin_cache
+    @extend {"$placeholder_for_" + $utilus_mixin_cache[$key]}
+  else if 'cache' in $called_from or 'utilus_cache' in $called_from
     {block}
   else
-    if $key in $utilus_mixin_cache
-      @extend {"$placeholder_for_" + $utilus_mixin_cache[$key]}
-    else
-      $id = length($utilus_mixin_cache)
-      &,
-      /$placeholder_for_{$id}
-        $utilus_mixin_cache[$key] = $id
-        {block}
+    $id = length($utilus_mixin_cache)
+
+    &,
+    /$placeholder_for_{$id}
+      $utilus_mixin_cache[$key] = $id
+      {block}
 
 cache ?= utilus_cache

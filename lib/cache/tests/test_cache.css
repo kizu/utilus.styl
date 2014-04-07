@@ -1,3 +1,8 @@
+.lol,
+.foo__child,
+.sub__child {
+  height: 20px;
+}
 .foo,
 .foo2 {
   color: #f00;
