@@ -6,6 +6,7 @@
 .foo2__child {
   color: #0f0;
   background-color: #00f;
+  height: 10px;
 }
 .foo__next-child,
 .foo2__next-child {
@@ -20,6 +21,7 @@
 .sub2__child {
   color: #000;
   background-color: #f00;
+  height: 10px;
 }
 .sub__next-child,
 .sub2__next-child {

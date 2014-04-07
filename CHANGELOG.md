@@ -2,6 +2,10 @@
 # Utilus.styl Changelog
 ---
 
+## v0.12.1 (2014-04-07)
+
+- Fixed nested caches bugs in `cache`.
+
 ## v0.12.0 (2014-04-06)
 
 - Added `called_from` function.

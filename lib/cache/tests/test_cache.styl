@@ -1,3 +1,7 @@
+bar()
+  +cache(arguments)
+    height: arguments
+
 foo($colorTheme = #f00 #0f0 #00f)
   +cache(arguments)
     color: $colorTheme[0]
@@ -5,6 +9,7 @@ foo($colorTheme = #f00 #0f0 #00f)
     &__child
       color: $colorTheme[1]
       background-color: $colorTheme[2]
+      bar(10px)
 
     &__next-child
       color: $colorTheme[2]
