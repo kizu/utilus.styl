@@ -4,6 +4,7 @@
 
 ## v0.13.0 (in development)
 
+- Added params for media flushing.
 - Refactored the `cache` to use cache in nested cases.
 
 ## v0.12.1 (2014-04-07)
