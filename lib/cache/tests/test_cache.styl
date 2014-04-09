@@ -30,3 +30,15 @@ foo($colorTheme = #f00 #0f0 #00f)
 
 .sub2
   foo(white black red)
+
+baz()
+  +cache()
+    width: 10px
+
+.fooz
+  baz()
+  height: 10px
+
+.maz
+  padding: 0
+  baz()

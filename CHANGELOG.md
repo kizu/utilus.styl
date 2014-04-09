@@ -6,6 +6,7 @@
 
 - Added params for media flushing.
 - Refactored the `cache` to use cache in nested cases.
+- `cache` no longer needs arguments (as it already function-specific).
 
 ## v0.12.1 (2014-04-07)
 

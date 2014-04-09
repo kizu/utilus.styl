@@ -1,8 +1,8 @@
 $utilus_mixin_cache = {}
 
-utilus_cache($where)
+utilus_cache()
   $called_from = called_from()
-  $key = '' + $called_from[0] + '__' + (current_media() or 'no-media') + '__' + $where
+  $key = (current_media() or 'no-media') + '__' + $called_from[0] + '__' + arguments
 
   if $key in $utilus_mixin_cache
     @extend {"$placeholder_for_" + $utilus_mixin_cache[$key]}

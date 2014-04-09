@@ -33,3 +33,13 @@
   color: #f00;
   text-shadow: 1px 1px #fff;
 }
+.fooz {
+  height: 10px;
+}
+.fooz,
+.maz {
+  width: 10px;
+}
+.maz {
+  padding: 0;
+}
