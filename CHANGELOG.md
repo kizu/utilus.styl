@@ -2,7 +2,7 @@
 # Utilus.styl Changelog
 ---
 
-## v0.13.0 (in development)
+## v0.13.0 (2014-04-14)
 
 - Added params for media flushing.
 - Refactored the `cache` to use cache in nested cases.
