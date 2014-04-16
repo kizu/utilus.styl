@@ -2,6 +2,10 @@
 # Utilus.styl Changelog
 ---
 
+## v0.14.0 (2014-04-16)
+
+- Changed `collect_by_type` to collect arrays into hashes instead of lists to make it easier to work with them.
+
 ## v0.13.0 (2014-04-14)
 
 - Added params for media flushing.
