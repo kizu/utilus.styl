@@ -2,6 +2,11 @@
 # Utilus.styl Changelog
 ---
 
+## v0.15.0 (2014-04-25)
+
+- Using Stylus 0.44.0
+- Removed `utlius_cache`, `utilus_called_from` and `utilus_current_media` as they're now in the latest Stylus.
+
 ## v0.14.0 (2014-04-16)
 
 - Changed `collect_by_type` to collect arrays into hashes instead of lists to make it easier to work with them.

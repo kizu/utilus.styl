@@ -1,6 +1,6 @@
 {
   "name": "utilus.styl",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "author": "Roman Komarov <kizmarh@ya.ru> (http://kizu.ru/en/)",
   "licence": "MIT",
   "description": "Some useful helper mixins for Stylus",
@@ -17,10 +17,10 @@
     "url": "git://github.com/kizu/utilus.styl.git"
   },
   "devDependencies": {
-    "stylus": "0.43.x",
+    "stylus": "0.44.x",
     "glob": "3.2.x",
     "mocha": "*",
-    "should": "*"
+    "should": "2.x.x"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test-runner.js --require should --reporter list"
