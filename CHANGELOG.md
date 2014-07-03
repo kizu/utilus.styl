@@ -6,6 +6,7 @@
 
 - Using Stylus 0.47.1
 - Deprecated `utilus_blend`, `utilus_contrast`, `utilus_luminance`, `utilus_rgb2rgba` in favor of the bifs added in Stylus `0.47`.
+- Using `list-separator` to detect comma-lists.
 
 ## v0.15.0 (2014-04-25)
 
